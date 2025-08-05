@@ -1,40 +1,35 @@
 import { User } from '@/types';
 import Image from 'next/image';
 import React, { Fragment } from 'react'
+import { UserCard } from './UserCard';
+import { UserDetailsModal } from './UserDetailsModal';
 
 interface UsersProps {
   users: User[];
 }
 
 const Users = ({users}:UsersProps) => {
+    const [openModal, setOpenModal] = React.useState(false);
+    const [selectedUser, setSelectedUser] = React.useState<User | null>(null);
+
+    const handleUserClick = (user: User) => {
+        setSelectedUser(user);
+        setOpenModal(true);
+    }
+    const handleCloseModal = () => {
+        setOpenModal(false);
+        setSelectedUser(null);
+    }; 
   return (
   <Fragment>
     {users && users.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
             {users.map((user) => (
-              <div
-                key={user.login.uuid}
-                className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6"
-              >
-                <div className="flex items-center space-x-4">
-                  <Image
-                    width={64}
-                    height={64}
-                    src={user.picture.medium}
-                    alt={`${user.name.first} ${user.name.last}`}
-                    className="w-16 h-16 rounded-full"
-                    loading="lazy"
-                  />
-                  <div>
-                    <h2 className="text-lg font-semibold">
-                      {user.name.first} {user.name.last}
-                    </h2>
-                    <p className="text-gray-500 dark:text-gray-400">
-                      {user.email}
-                    </p>
-                  </div>
-                </div>
-              </div>
+                <UserCard
+                    key={user.login.uuid}
+                    user={user}
+                    onClick={() => handleUserClick(user)    }
+                />
             ))}
           </div>
         ) :  (
@@ -43,6 +38,11 @@ const Users = ({users}:UsersProps) => {
             <p className="text-gray-500 dark:text-gray-400 mb-4">No users found</p>
           </div>
         )}
+    {openModal && selectedUser && ( 
+        <UserDetailsModal
+          user={selectedUser as User}
+          onClose={handleCloseModal}
+        />)}
   </Fragment>
   )
 }
