@@ -73,7 +73,7 @@ export default function Home() {
            <Users users={filteredUsers as User[]} />
           </div>
         )}
-        {!loading && mounted && (
+        {filteredUsers.length > params.pageSize -1 && !loading && mounted && (
           <div className="flex justify-center mt-8">
             <Pagination
               currentPage={params.page}
