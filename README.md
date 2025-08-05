@@ -37,7 +37,7 @@ This project is a User Directory application built with React and TypeScript. It
 To start the development server, run:
 
 ```bash
-npm start
+npm run dev
 ```
 
 The application will be available at `http://localhost:3000`.
