@@ -1,4 +1,5 @@
 import { User } from '@/types';
+import Image from 'next/image';
 import React, { Fragment } from 'react'
 
 interface UsersProps {
@@ -16,10 +17,13 @@ const Users = ({users}:UsersProps) => {
                 className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6"
               >
                 <div className="flex items-center space-x-4">
-                  <img
+                  <Image
+                    width={64}
+                    height={64}
                     src={user.picture.medium}
                     alt={`${user.name.first} ${user.name.last}`}
                     className="w-16 h-16 rounded-full"
+                    loading="lazy"
                   />
                   <div>
                     <h2 className="text-lg font-semibold">

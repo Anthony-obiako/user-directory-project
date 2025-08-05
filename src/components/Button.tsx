@@ -1,9 +1,10 @@
+import { BaseHTMLAttributes, ButtonHTMLAttributes } from "react";
+
 interface ButtonProps {
   children: React.ReactNode;
   variant?: "primary" | "secondary" | "ghost";
   size?: "sm" | "md" | "lg";
   className?: string;
-  [key: string]: any;
 }
 
 export const Button = ({
@@ -12,7 +13,7 @@ export const Button = ({
   size = "md",
   className = "",
   ...props
-}: ButtonProps) => {
+}: ButtonProps & React.ButtonHTMLAttributes<HTMLButtonElement>) => {
   const baseClasses =
     "inline-flex items-center justify-center font-medium rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2";
 
