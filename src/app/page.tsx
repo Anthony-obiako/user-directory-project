@@ -5,7 +5,6 @@ import { SearchBar } from "@/components/SearchBar";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { useTheme } from "@/hooks/useTheme";
 import { useUsers } from "@/hooks/useUsers";
-import Image from "next/image";
 import { Pagination } from "@/components/Pagination";
 import Users from "@/components/Users";
 import { User } from "@/types";
@@ -42,7 +41,6 @@ export default function Home() {
           <SearchBar
             value={searchTerm}
             onChange={setSearchTerm}
-            isDark={isDark}
           />
           <ThemeToggle isDark={isDark} onToggle={toggleTheme} />
         </div>

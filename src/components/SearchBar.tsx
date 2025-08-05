@@ -4,14 +4,12 @@ interface SearchBarProps {
   value: string;
   onChange: (value: string) => void;
   placeholder?: string;
-  isDark: boolean;
 }
 
 export const SearchBar = ({
   value,
   onChange,
   placeholder = "Search users...",
-  isDark,
 }: SearchBarProps) => {
   return (
     <div className="relative">

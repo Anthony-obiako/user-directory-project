@@ -40,6 +40,7 @@ export const useUsers = (props: Props) => {
 
   useEffect(() => {
     fetchUsers();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.page, props.pageSize]); // Refetch when page or pageSize changes
 
   return {
